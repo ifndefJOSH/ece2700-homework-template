@@ -1,0 +1,80 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+
+%opening
+\title{Getting Started With the \LaTeX\ Template for ECE 2700 Homework}
+\author{Josh Jeppson}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+If you've taken a math class before, you've probably interacted with, or even written, documents made using \LaTeX\ . \LaTeX\ is a typesetting system that creates \emph{pixel-perfect} PDF files, meaning that whoever opens them, on whatever system, whatever PDF reader, they get exactly what you see. Unlike Microsoft Word or LibreOffice, which can vary from version to version or system to system, \LaTeX\ is robust and predictable. \textbf{You are NOT REQUIRED to use \LaTeX\, but it is \textit{strongly encouraged}}, since it will make our jobs grading your homework easier.
+\\[10pt]
+\textbf{You \emph{are}, however, required to follow the ECE Homework style guide. You will be deducted points if you do not.} The nice thing about the \LaTeX\ template, and one of the reasons we encourage you to use it, is that it takes care of all of the formatting and style-guide stuff for you, assuming that you use it correctly. The \LaTeX\ template was written by me, Josh Jeppson, who, at the time of writing this, is one of your graders|specifically the one who will be in charge of grading you on the style guide.
+
+\section{Getting the Template}
+
+The template is hosted on GitHub at
+\begin{center}
+\texttt{https://github.com/ifndefJOSH/ece2700-homework-template}.
+\end{center}
+You can visit that address and click ``Download$\to$ZIP Folder'', or you can clone it using the \texttt{git clone} command (though I ask you then remove my upstream origin with the command \texttt{git remote remove origin}). After you've cloned the repository or extracted the ZIP folder, you will see a few files. Below are their names and a description of what they do:
+\begin{itemize}
+	\item \texttt{background.jpg}: Background image|a.k.a Engineering paper. For the love of chicken enchaladas, do not touch.
+	\item \texttt{hwtemplate.tex}: Blank homework template with no problem statements. Do not touch.
+	\item \texttt{makeHW.py}: Your best friend. A Python script to \emph{autogenerate} homework files for you (where all you need to do is fill them in afterwards). See below for how to use.
+	\item \texttt{hw1*-LASTNAME.tex}$\to$\texttt{hw2-LASTNAME.tex}: Already filled-out homework templates for HW1 parts 1 and 2, as well as HW2, to help you get started.
+\end{itemize}
+
+\section{Using the Template}
+
+You will need \LaTeX\ editing software|oftentimes just a fancy text editor. You can get away with just using a text editor but I would not recommend it. Here are some of the options for \LaTeX\ software you have:
+\begin{enumerate}
+	\item Kile (\url{https://apps.kde.org/kile/})|my personal favorite and the one that I use. Supports live preview, and uses the \texttt{katepart} editor from KF5. You don't need to know what that means.
+	\item TeXstudio (\url{https://www.texstudio.org/}|\emph{don't} get this from SourceForge!)|A fairly decent \LaTeX\ editor. You'll probably like this one.
+	\item Texmaker (\url{https://www.xm1math.net/texmaker/index.html})|Also pretty decent in my opinion. Maintained by the same guy who started Kile.
+	\item VSCode (\url{https://code.visualstudio.com/})|Yes, your favorite electron-based source code text editor has a marketplace extension for \LaTeX\!
+	\item Overleaf (\url{https://www.overleaf.com/})|Online \LaTeX\ editor. Good if online editors are your thing. Overleaf also can integrate with \texttt{git} if you have the premium version.
+\end{enumerate}
+
+\noindent You can use a regular text editor like \texttt{vim}, Kate, or Notepad++, but you probably shouldn't for your \LaTeX\. If you do that, you will need a \LaTeX\ compiler, such as TeXLive or MikTex, which are automatically installed by the programs above. If you find yourself in this situation, message me on Canvas.
+\\[10pt]
+NOTE:\textit{
+If you're using the \texttt{tree} package to draw, say, binary trees (can't imagine why you'd need to for this class), you HAVE to use the \texttt{lualatex} compiler, which comes with both TeXLive and MikTex.
+}
+
+\section{Using \texttt{makeHW.py}}
+
+You will need Python 3.6+. Before you run it, change the \texttt{LASTNAME} variable at the beginning of the file to your last name. Then, you can run the file. It will prompt you for:
+
+\begin{enumerate}
+	\item The course number. This is \emph{always} ECE 2700.
+	\item The assignment number. This will control how your files are named, so just put the number. For assignment 3, just put 3.
+	\item The problem numbers, separated by spaces.
+	\item The folder to save to. Always put ``\texttt{.}''. That means the current folder. The template will break if it can't find \texttt{background.jpg}.
+\end{enumerate}
+
+
+\section{bUt I dOn'T wAnT tO uSe ThE pYtHoN fIlE!1!1!}
+
+Fine. Copy the \texttt{hwtemplate.tex} for each assignment you use the template for and fill it in yourself!
+
+\section{FAQ}
+
+\begin{enumerate}
+	\item Q: Do I need to use the ECE style guide for every assignment? \\
+	\noindent A: Yes. You will lose points if not.
+	\item Q: How many points will I lose? \\
+	\noindent A: Less in this class than others. Max 10\% of the total points on the assignment.
+	\item Q: Do I need to use the ECE style guide for the midterm/final?\\
+	\noindent A: No, you don't have to. In fact, please don't.
+	\item Q: It's not compiling/something isn't working. \\
+	\noindent A: You wrote something wrong. Message me on Canvas.
+\end{enumerate}
+
+
+\end{document}
