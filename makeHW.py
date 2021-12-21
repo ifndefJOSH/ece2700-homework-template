@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 
+# Put your last name here as a "constant"
+LASTNAME="LASTNAME"
+
 if __name__=='__main__':
     courseNum = input("Please input the course number:")
     assnNum = input("Please input the assignment number:")
@@ -23,5 +26,5 @@ if __name__=='__main__':
     fileContents = fileContents.replace("COURSENUMBER", courseNum)
     fileContents = fileContents.replace("ASSIGNMENTNUMBER", assnNum)
     fileContents = fileContents.replace("CONTENTS", pContents)
-    with open(f"{folder}/hw{assnNum}-Jeppson.tex", "w") as outfile:
+    with open(f"{folder}/hw{assnNum}-{LASTNAME}.tex", "w") as outfile:
         outfile.write(fileContents)
