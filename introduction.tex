@@ -3,7 +3,7 @@
 \usepackage{hyperref}
 \usepackage{amsmath}
 
-\title{Introduction to \LaTeX, the Template, and \texttt{git}}
+\title{Introduction to \LaTeX, the ECE Homework Template, and Some Basic \texttt{git}}
 \author{Josh Jeppson}
 
 \begin{document}
@@ -12,7 +12,7 @@
 
 \LaTeX\ documents are divided into two sections, the \emph{preamble}, and the \emph{document}. Anything outside of \texttt{\textbackslash begin\{document\}...\textbackslash end\{document\}} is part of the preamble, and anything within is part of the document. The escape character in \LaTeX, like it is in C or Python, is \textbackslash. \textbackslash\textbackslash, however, does \emph{not} produce a backslash on your document. This produces a new line (can also be achieved by \textbackslash newline).
 \\[10pt]
-There are two main concepts in \LaTeX: \emph{commands} and \texttt{environments}. Commands are like functions, which can take one or more arguments (placed in \{\} or [], depending on whether they are printed parameters or not), and environments are separated by the \texttt{begin} and \texttt{end} keywords.
+There are two main concepts in \LaTeX: \emph{commands} and \emph{environments}. Commands are like functions, which can take one or more arguments (placed in \{\} or [], depending on whether they are printed parameters or not), and environments are separated by the \texttt{begin} and \texttt{end} keywords.
 
 \subsection{Common Commands}
 
@@ -60,10 +60,32 @@ More information can be found at \url{https://www.overleaf.com/learn/latex/Envir
 
 
 \section{The Template}
-I've tried to include a number of comments in the template, and I've created some custom commands and environments for you to use. These are \emph{specific to }
+I've tried to include a number of comments in the template, and I've created some custom commands and environments for you to use. These are \emph{specific to the homework template}. Since \LaTeX\ allows you to create custom commands, I have done this in the homework template, and these commands will not work in other documents!
+\begin{center}
+	\begin{tabular}{|c|c|c|} \hline
+		\textbf{Element} & \textbf{Type} & \textbf{Description} \\ \hline
+		\texttt{problem} & environment & Where the problem description goes. \\
+		\texttt{answer} & environment & Where your answer/solution goes. \\
+		\texttt{finalAns} & command & The command used to show what your final answer is \\
+		\texttt{answersection} & environment & A subsection fo a problem.* \\
+		\texttt{course} & command & The course number \\
+		\texttt{studentName} & command & Your name \\
+		\texttt{aNumber} & command & Your A-number \\
+		\texttt{assnNumber} & command & The assignment number \\
+		\texttt{laplace} & command & Creates a Laplace symbol \\
+		\texttt{ilaplace} & command & Creates an inverse Laplace symbol \\
+		\texttt{fourier} & command & Creates a Fourier transform symbol \\
+		\texttt{ifourier} & command & Creates an inverse Fourier symbol \\ \hline
+	\end{tabular}
+	*Do not use on the \emph{last} part of a multi-part problem or it will create an extra line.
+\end{center}
+
+I've also included a custom \texttt{lstlisting} code style (because the default is ugly), and some definitions to make drawing flowcharts easier in \texttt{tikz}. If you need help with any of this, come to my office hours.
 
 \section{Some Basic \texttt{git}}
 
+You do not have to use \texttt{git} to use the template. However, I highly suggest using it (if not for this then for your coding classes such as ECE 1400/1410 and beyond), since you'll be using it in industry.
+\\[10pt]
 \texttt{git} is a version control system written by Linus Torvalds. It is the de-facto code version control system in use today and if you write code in your careers (you will), you will most likely use it. \texttt{git} tracks file changes in a very space-efficient way and allows you to revert to old versions of files if need be. The quanta by which git uses to keep track of changes is called a ``commit''. Commits are a \emph{state} of your repository that you can revert back to if necessary. To add file changes to a commit, use \texttt{git add [FILE]}. Files in a folder are \emph{by default} not included in a repository and are \textbf{only staged for commit after they are \emph{added}.} Once you have made changes, type \texttt{git commit -m [Message]}, or just \texttt{git commit}, after which a default text editor (generally GNU Nano) pops up and prompts you for a commit message.
 \\[10pt]
 You can see a status of changes made and ready for commits by using \texttt{git status}, and a list of previous commits using \texttt{git log}. If you are using a remote location for your repository (generally GitHub or GitLab and configurable using the \texttt{git remote} set of commands), you can \emph{push} your changes to the remote using \texttt{git push}, or, if you have not configured a default remote, \texttt{git push -u [REMOTE NAME]}. You can add a remote by using \texttt{git remote add [REMOTE-NAME] remote@url:generally/an/SSH/URL.git}. The remote name is usually \texttt{origin}.
