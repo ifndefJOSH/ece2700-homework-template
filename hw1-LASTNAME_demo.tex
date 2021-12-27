@@ -1,0 +1,323 @@
+% Engineering style guide LaTeX template
+% Created by Josh Jeppson
+% You are free to distribute and use this template as long as I am given credit
+% Maybe it will make my job of grading your papers easier
+
+\documentclass[letterpaper]{report}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+\usepackage{layout}
+\usepackage[margin=1in]{geometry}
+\usepackage{pgf}
+\usepackage{pgfpages}
+\usepackage{pgfplots}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz,pgfplots}
+\usepackage[abspage,user,lastpage]{zref}
+\usepackage{lastpage}
+\usepackage{marginnote}
+\usepackage{eso-pic}
+\usepackage{ulem}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{wrapfig}
+\usepackage[export]{adjustbox}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{soul}
+\usepackage{cite}
+\usepackage{url}
+\usepackage[absolute]{textpos}
+\usepackage{amssymb}  % provides Rbb, etc.
+\usepackage{latexsym}  % provides \Box
+\usepackage{array}
+% \usepackage{forest}
+
+\pgfplotsset{compat=1.18}
+
+\usetikzlibrary{plotmarks}
+\usetikzlibrary{arrows}
+\usetikzlibrary{patterns}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{shapes.arrows}
+\usetikzlibrary{decorations}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{positioning}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{white},
+	commentstyle=\color{green},
+	keywordstyle=\color{blue},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{red},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,
+	breaklines=true,
+	captionpos=b,
+	keepspaces=true,
+	numbers=left,
+	numbersep=5pt,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	tabsize=2
+}
+\lstset{style=mystyle}
+
+\allowdisplaybreaks
+
+\usetikzlibrary{arrows.meta}
+
+% ROBDD Style
+% \forestset{
+%   BDT/.style={
+%     for tree={
+%       if n children=0{}{circle},% use a circle unless there are 0 children
+%       draw,% draw every node
+%       edge={
+%         my edge,% use the my edge style for edges (with the arrow)
+%       },
+%       if n=1{
+%         edge+={0 my edge},% if the child is the first one, add the 0 my edge style (dashed)
+%       }{},
+%       font=\sffamily,% use sans serif for node text
+%     }
+%   },
+% }
+
+\usetikzlibrary{calc, positioning, tikzmark}
+
+\newcommand\BackgroundPic{%
+\put(0,0){%
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill
+\centering
+\includegraphics[width=\paperwidth,height=\paperheight,%
+keepaspectratio]{background.jpg}%
+\vfill
+}}}
+
+\usetikzlibrary{shapes.geometric, arrows}
+\usetikzlibrary{shapes}
+\newenvironment{question}{}{}
+
+% Definitions for flowchart stuff
+\tikzstyle{rect} = [rectangle, text centered, draw=black, fill=white]
+\tikzstyle{circ} = [circle, text centered, draw=black, fill=white]
+% \tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{loop} = [signal, minimum width=2cm, minimum height=1cm, text centered, draw=black, fill= blue!30]
+% \tikzstyle{predefinedprocess} = [rectangle split, rectangle split horizontal,rectangle split parts=3,minimum height=1cm, draw=black, fill=orange!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+%% ---- Document Properties ----
+\newcommand{\course}{ECE XXXX} % Edit these properties
+\newcommand{\studentName}{LASTNAME, FIRSTNAME}
+\newcommand{\aNumber}{A00000000}
+\newcommand{\assnNumber}{1}
+\newcommand{\laplace}[1]{\mathcal{L}\left[#1\right]}
+\newcommand{\ilaplace}[1]{\mathcal{L}^{-1}\left[#1\right]}
+\newcommand{\fourier}[1]{\mathcal{F}\left[#1\right]}
+\newcommand{\ifourier}[1]{\mathcal{F}^{-1}\left[#1\right]}
+
+% \newcommand{\diff}[1]{\frac{d}{d#1} \left[ }{\right]}
+
+\newcommand{\vlineStrut}{\rule[-.3\baselineskip]{0pt}{\baselineskip}}
+\newcommand{\finalAns}[2]{\tikzmark{as0} \uuline{#1 }  \tikzmark{as}
+\marginnote{\tikzmark{rm} \qquad #2}
+\qquad $<$ \quad \noindent\makebox[\linewidth]{\rule{6.8in}{0.4pt}}
+% \begin{tikzpicture}[overlay, remember picture]
+%     \coordinate[below=0.5ex of $(pic cs:as)!0.5!(pic cs:as)$]  (a);
+%     \draw (a) -- ++ ( 14,0) node[right] {};
+% \end{tikzpicture}
+}
+
+% ---- Header and footer def ----
+\geometry{
+	right=1 in
+}
+\pagestyle{fancy}
+\fancyhead[]{}
+\fancyfoot[]{}
+\fancyheadoffset[R]{.7in}
+\rhead{ \studentName \qquad  \thepage\ / \pageref{LastPage} }
+\chead{\vlineStrut \qquad \course; Assignment \assnNumber \qquad \vlineStrut}
+\lhead[]{\today }
+\renewcommand{\headrulewidth}{0pt}
+
+% ---- Custom commands ---
+% \newcommand{\pageline}[][]{\noindent\makebox[\linewidth]{\rule{6.8in}{0.4pt}}}
+
+% ---- Custom Environments ----
+\newcounter{problemNum}[section]
+\newenvironment{problem}[1][]
+{
+
+	% \noindent\makebox[\linewidth]{\rule{6.5in}{0.4pt}} \\
+	\noindent \textbf{Problem #1 \refstepcounter{problemNum}:} %(#1)
+}
+{
+	\newline \noindent\makebox[\linewidth]{\rule{6.8in}{0.4pt}}
+}
+
+\newenvironment{answer}{
+	\noindent
+}
+{
+
+	\noindent\makebox[\linewidth]{\rule{6.8in}{0.4pt}} \\
+	% [.2pt] \\
+	\noindent\makebox[\linewidth]{\rule{6.8in}{0.4pt}}
+}
+
+\newenvironment{answersection}{}{
+	\newline \noindent\makebox[\linewidth]{\rule{6.8in}{0.4pt}}
+}
+
+
+
+
+
+\begin{document}
+\AddToShipoutPicture{\BackgroundPic}
+
+\begin{problem}[{1}]
+	% Math problem demo
+	Solve the following equation for $x$:
+	\[
+		4 = x + 2
+	\]
+    Given: Equation \\
+    Find: Solution for $x$ % Math statements, even if a single character, are to be included in a $$, \[\], or an align
+\end{problem}
+\begin{answer}
+    % Because this is a math problem, we will use the align* environment.
+    % The ampersand, &, indicates what to align to, generally the equals signs
+    % align numbers equations, but align* does not
+	\begin{align*}
+		4 &= x + 2 \\ % We must explicitly state we are starting a new line with \\
+		4 - 2 &= x \\
+		2 &= x % Do not include a \\ on the last line
+	\end{align*}
+% Now that we have found the answer, we must double underline it. This can be achieved using the custom \finalAns{}{} command
+\finalAns{$2$}{$x$}
+\end{answer}
+\newpage % This is optional, but since all of this is digital, we can use as many pages as we want!
+\begin{problem}[{2}]
+	% Problem Demonstrating multiple parts as well as the lstlisting environment
+	Write a ``Hello World'' program in the following languages:
+	\begin{enumerate}
+		\item C
+		\item C++
+		\item Python
+	\end{enumerate}
+    Given: Languages \\
+    Find: ``Hello World'' program in each one
+\end{problem}
+\begin{answer}
+    % We will use an answersection environment to accomplish this.
+    % Since the ``find'' is a code environment, we DO NOT need to (and should not) include it in a \finalAns{}{} command
+    \begin{answersection}
+		\textbf{\texttt{Hello World} in the C language:}
+		\begin{lstlisting}[language=c]
+/*
+ Hello World in C. This program demonstrates syntax highlighting in the LaTeX lstlisting environment.
+ Note how this comment is green
+*/
+#include <stdio.h> // % Note how even LaTeX comments show up in here
+
+int main(void)
+{
+	printf("Hello World!\n");
+	return 0;
+}
+		\end{lstlisting}
+		\quad % If you get the error: There's no line here to end. \end{answersection}, place a \quad or \qquad (tab character), to make the document compile
+    \end{answersection}
+	\begin{answersection}
+	 \textbf{\texttt{Hello World} in the C++ language:}
+	 \begin{lstlisting}[language=c++]
+#include <iostream>
+
+int main(void)
+{
+	std::cout << "Hello World!" << std::endl; // Stream operators are weird, aren't they?
+	return 0;
+}
+	 \end{lstlisting}
+	\quad % See, it's kind of annoying, isn't it?
+	\end{answersection}
+	% The last part of a problem SHOULD NOT be in an answersection, or it will create an extra line
+	\textbf{\texttt{Hello World} in the Python language:}
+	\begin{lstlisting}[language=python]
+if __name__=='__main__':
+	print("Hello World!") # LaTeX accurately adapts the syntax highlighting to the language in use!
+	\end{lstlisting}
+
+\end{answer}
+\newpage % Again, optional
+\begin{problem}[{3}]
+	Explain why you should get an ``A''. \\ % Note, that in LaTeX, `` and '' are the commands for (proper) quotation marks
+    Given: Problem statement \\ % Sometimes, this is a totally valid ``given''
+    Find: Explaination
+\end{problem}
+\begin{answer}
+    I should get an ``A'' because I know \emph{so} much \LaTeX! I can do \texttt{monospace} and \textbf{bold} and \textit{italic} text! I can write the quadratic formula in math mode ($x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$), and I can put the current date (\today).
+    I can
+    \begin{itemize}
+		\item create
+		\begin{itemize}
+			\item lists
+			\item within
+		\end{itemize}
+		\item lists.
+    \end{itemize}
+	I can also
+	\begin{enumerate}
+		\item create numbered lists
+		\item and use \texttt{makeHW.py}
+	\end{enumerate}
+	I can indicate a \finalAns{final answer,}{ANS}
+	and I know how to create a
+	\[
+		c_{entered} = equation\left(\frac{with\cdot as\cdot many\cdot symbols}{as\cdot we \cdot need}\right)
+	\]
+	I can do
+	\begin{center}
+		centered text,
+	\end{center}
+	\begin{flushright}
+		right-aligned text,
+	\end{flushright}
+	\begin{flushleft}
+		and left-aligned text.
+	\end{flushleft}
+	I can create a matrix like this:
+	\[
+		\begin{bmatrix}
+			a & b & c \\
+			d & e & f \\
+			g & h & i
+		\end{bmatrix}
+	\]
+	and a table like this:
+	\begin{center}
+		\begin{tabular}{|c|c|c|} \hline
+			\textbf{Header 1} & \textbf{Header 2} & \textbf{Header 3} \\ \hline
+			a & b & c \\
+			d & e & f \\
+			g & h & i \\ \hline
+		\end{tabular}
+	\end{center}
+	Maybe I'll create my next resume in \LaTeX!
+\end{answer}
+        
+\end{document}
