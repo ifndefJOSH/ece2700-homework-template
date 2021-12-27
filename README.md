@@ -9,4 +9,4 @@ Homework template for the ECE Style Guide at Utah State University. Pre-filled o
 	- Get a LaTeX editor
 	- Use `makeHW.py` to autogenerate templates for your classes.
 
-![engrLogo.png](USU Engineering Logo)
+![USU Engineering Logo](engrLogo.png)
