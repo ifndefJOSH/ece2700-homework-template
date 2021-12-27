@@ -1,0 +1,91 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{amsmath}
+
+\title{Introduction to \LaTeX, the Template, and \texttt{git}}
+\author{Josh Jeppson}
+
+\begin{document}
+\maketitle
+\section{\LaTeX\ in General}
+
+\LaTeX\ documents are divided into two sections, the \emph{preamble}, and the \emph{document}. Anything outside of \texttt{\textbackslash begin\{document\}...\textbackslash end\{document\}} is part of the preamble, and anything within is part of the document. The escape character in \LaTeX, like it is in C or Python, is \textbackslash. \textbackslash\textbackslash, however, does \emph{not} produce a backslash on your document. This produces a new line (can also be achieved by \textbackslash newline).
+\\[10pt]
+There are two main concepts in \LaTeX: \emph{commands} and \texttt{environments}. Commands are like functions, which can take one or more arguments (placed in \{\} or [], depending on whether they are printed parameters or not), and environments are separated by the \texttt{begin} and \texttt{end} keywords.
+
+\subsection{Common Commands}
+
+More information can be found at \url{https://www.overleaf.com/learn/latex/Commands}.
+
+\begin{center}
+	\begin{tabular}{|c|c|c|} \hline
+		\textbf{Description} & \textbf{Command} & \textbf{Parameters} \\ \hline
+		Boldface Text & \texttt{textbf} & \{text to bold\}\\
+		Italic Text & \texttt{textit} & \{text to italicise\} \\
+		Monospace Typeface  & \texttt{texttt} & \{text in monospace\} \\
+		Math Equation & \$\$ & \$Math\_\{Equation\} + Formatted\$ \\
+		Centered Math Equation & \textbackslash[\textbackslash] & Math equation  \\
+		New Line & \textbackslash\textbackslash\ or \textbackslash \texttt{newline} & \\
+		New Page &  \texttt{newpage} & \\
+		Picture & \texttt{includegraphics} & [width, height, etc]\{path/to/picture.png\} \\
+		Input Code File & \texttt{lstinputlisting} & [language=language]\{path/to/file.cpp\} \\ \hline
+	\end{tabular}
+\end{center}
+
+\noindent This is not an exhaustive list. Just some of the common ones. A full listing can be found at \url{https://tug.org/texniques/tn10/latex_cribsheet.pdf}, and a command ``decoder'' (you draw a symbol, it tells you the closest \LaTeX\ command) can be found at \url{https://detexify.kirelabs.org/classify.html}.
+
+\subsection{Common Environments}
+
+More information can be found at \url{https://www.overleaf.com/learn/latex/Environments}.
+
+\begin{center}
+	\begin{tabular}{|c|c|} \hline
+		\textbf{Description} & \textbf{Command} \\\hline
+		Centered Text & \texttt{center} \\
+		Left-aligned Text & \texttt{flushleft} \\
+		Right-aligned Text & \texttt{flushright} \\
+		Bulleted List & \texttt{itemize} \\
+		Numbered List & \texttt{enumerate} \\
+		Table & \texttt{tabular} \\
+		Matrix (no borders)* & \texttt{matrix} \\
+		Matrix (normal)* & \texttt{bmatrix} \\
+		Tikz Picture & \texttt{tikzpicture} \\
+		Aligned Math Equations (numbered) & \texttt{align} \\
+		Aligned Math Equations (not numbered) & \texttt{align*} \\ \hline
+	\end{tabular} \\
+	*Indicates must be within an \texttt{align} (or derivative) environment.
+\end{center}
+
+
+
+\section{The Template}
+I've tried to include a number of comments in the template, and I've created some custom commands and environments for you to use. These are \emph{specific to }
+
+\section{Some Basic \texttt{git}}
+
+\texttt{git} is a version control system written by Linus Torvalds. It is the de-facto code version control system in use today and if you write code in your careers (you will), you will most likely use it. \texttt{git} tracks file changes in a very space-efficient way and allows you to revert to old versions of files if need be. The quanta by which git uses to keep track of changes is called a ``commit''. Commits are a \emph{state} of your repository that you can revert back to if necessary. To add file changes to a commit, use \texttt{git add [FILE]}. Files in a folder are \emph{by default} not included in a repository and are \textbf{only staged for commit after they are \emph{added}.} Once you have made changes, type \texttt{git commit -m [Message]}, or just \texttt{git commit}, after which a default text editor (generally GNU Nano) pops up and prompts you for a commit message.
+\\[10pt]
+You can see a status of changes made and ready for commits by using \texttt{git status}, and a list of previous commits using \texttt{git log}. If you are using a remote location for your repository (generally GitHub or GitLab and configurable using the \texttt{git remote} set of commands), you can \emph{push} your changes to the remote using \texttt{git push}, or, if you have not configured a default remote, \texttt{git push -u [REMOTE NAME]}. You can add a remote by using \texttt{git remote add [REMOTE-NAME] remote@url:generally/an/SSH/URL.git}. The remote name is usually \texttt{origin}.
+\\[10pt]
+If you messed up and want to revert to an old commit, or want to undo staged changes, there are a few commands you can use. \texttt{git restore [FILES]} restores files to the state they were in the last commit. If you wish to restore them to a \emph{specific} commit, you may use \texttt{git restore --source=[COMMIT HASH] [FILES]}. You can also use \texttt{git reset [COMMIT HASH]} to reset the \emph{entire} repository to the state it was when that commit was made. Commit hashes are found in \texttt{git log}.
+\\[10pt]
+If you just want to see what the state of the repository was at a certain commit, you can use \texttt{git checkout [COMMIT HASH]}. \texttt{HEAD} is the latest commit on the current branch that you're working on. Additionally \texttt{git checkout [BRANCH NAME]} can switch you to an existing \emph{branch}, and \texttt{git checkout -b [BRANCH NAME]} can create a new branch for you and switch you to it.
+\\[10pt]
+Obviously, \texttt{git} has far more functionality than this. You can create forks (duplicates of a repository linked to that repository), branches (a parallel line of commits that can be \texttt{git merge}'d back into the main branch), pull requests (when you want to merge changes in your fork back into an upstream repository), see the \texttt{blame} of who exactly edited what on a file, and \texttt{bisect} to find exactly where a bug occurred in $O(\log n)$ time. You can \texttt{stash} changes you don't want to commit, view the \texttt{diff} between two commits, \texttt{tag} a certain commit, and much more. Full documentation for \texttt{git} can be found at \url{https://git-scm.com/docs}.
+\\[10pt]
+Of course, for just editing the \TeX\ files used for your homework, your \texttt{git} workflow (if you choose to use \texttt{git}) will look something like this:
+
+\begin{enumerate}
+	\item Use \texttt{makeHW.py} to create a file, fill it with problem descriptions.
+	\item \texttt{git add hwX-LASTNAME.tex}
+	\item \texttt{git commit -a -m "Created homework file for homework X"} (The \texttt{-a} option means commit \emph{all} changes)
+	\item Work on homework
+	\item \texttt{git commit -a -m "Started problem 1"}
+	\item Work some more
+	\item \texttt{git commit -a -m "Finished problem 1"}
+	\item Etc...If you use GitHub, you will probably have a \texttt{git push} in there occasionally.
+\end{enumerate}
+
+
+\end{document}
